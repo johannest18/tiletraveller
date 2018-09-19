@@ -8,12 +8,18 @@ def youcantravel(n, e, s, w):
     message="You can travel: "
     if n == 1:
         message += "(N)orth"
-    if e == 1:
+    if e == 1 and n == 1:
         message += " or (E)ast"
-    if s == 1:
+    elif e == 1 and n != 1:
+        message += "(E)ast"
+    if s == 1 and (n==1 or e ==1):
         message += " or (S)outh"
-    if w == 1:
+    elif s == 1 and not (n==1 or e ==1):
+        message += "(S)outh"
+    if w == 1 and (n==1 or e==1 or s==1):
         message += " or (W)est"
+    elif w==1 and not  (n==1 or e==1 or s==1):
+        message += "(W)est"
     print(message+".")
 
 #setja inn inputaðgerð
@@ -42,14 +48,14 @@ def faersla(t, f, x, y):
 #athuga hvort eitthvað sé valid direction
 
 def heildarfærsla(no, ea, so, we, x, y, xy):
-    """Þetta fall tekur við upplýsingum um í hvaða áttir má færast og lætur öll hin föllin vinna saman að því
+    """Þetta fall tekur við upplýsingum um í hvaða áttir má færast, og upphafsstaði og lætur öll hin föllin vinna saman að því
     að láta notanda vita í hvaða átt má fara, taka við input og færa kall í leyfilega átt"""
-        youcantravel(n, e, s, w)
-        location2 = xy
-        while location2 == xy:
-            attin = inputid()
-            xy, x, y = faersla(attin, xy, x, y)      
-        return xy, x, y 
+    youcantravel(n, e, s, w)
+    location2 = xy
+    while location2 == xy:
+        attin = inputid()
+        xy, x, y = faersla(attin, xy, x, y)      
+    return xy, x, y 
 
 #Setja inn hvað gerjst gerist í hverjum af 9 tælum
 victory = [3,1]
