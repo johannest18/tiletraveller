@@ -1,8 +1,31 @@
 #Velja upphafsstaðsetningu x og y
 locationx, locationy = 1, 1
 location = [locationx, locationy]
-#Setja inn færsluaðgerð, þe. setja inn skipanir fyrir færslu og láta kall færast
+
+#Setja inn prentaðgerð
+def youcantravel(n, e, s, w):
+    """Þetta fall athugar í hvaða áttir má færast og segir notanda það"""
+    message="You can travel: "
+    if n == 1:
+        message += "(N)orth"
+    if e == 1:
+        message += " or (E)ast"
+    if s == 1:
+        message += " or (S)outh"
+    if w == 1:
+        message += " or (W)est"
+    print(message+".")
+
+#setja inn inputaðgerð
+def inputid():
+    """Þetta fall biður um input frá notanda og tekur við inputi"""
+    faerslan = input("Direction: ")
+    faerslan = faerslan.lower()
+    return faerslan
+
+#Setja inn færsluaðgerð, þe. setja inn skipanir frá inputi og láta kall færast
 def faersla(t, f, x, y):
+    """Þetta fall tekur input úr inputfalli, athugar hvort sú átt sem beðið var um sé leyfileg og færir kallinn í þá átt"""
     t = t.lower()
     if t == "n" and n==1:
         y+=1
@@ -18,25 +41,9 @@ def faersla(t, f, x, y):
     return f, x, y
 #athuga hvort eitthvað sé valid direction
 
-#Setja inn prentaðgerð
-def youcantravel(n, e, s, w):
-    message="You can travel: "
-    if n == 1:
-        message += "(N)orth"
-    if e == 1:
-        message += " or (E)ast"
-    if s == 1:
-        message += " or (S)outh"
-    if w == 1:
-        message += " or (W)est"
-    print(message+".")
-#setja inn inputaðgerð
-def inputid():
-    faerslan = input("Direction: ")
-    faerslan = faerslan.lower()
-    return faerslan
-
 def heildarfærsla(no, ea, so, we, x, y, xy):
+    """Þetta fall tekur við upplýsingum um í hvaða áttir má færast og lætur öll hin föllin vinna saman að því
+    að láta notanda vita í hvaða átt má fara, taka við input og færa kall í leyfilega átt"""
         youcantravel(n, e, s, w)
         location2 = xy
         while location2 == xy:
@@ -44,6 +51,7 @@ def heildarfærsla(no, ea, so, we, x, y, xy):
             xy, x, y = faersla(attin, xy, x, y)      
         return xy, x, y 
 
+#Setja inn hvað gerjst gerist í hverjum af 9 tælum
 victory = [3,1]
 while location != victory:
     if location == [1,1] or location == [2,1]:
@@ -65,8 +73,5 @@ while location != victory:
         n, e, s, w= 1, 0, 1 ,0
         location, locationx, locationy = heildarfærsla(n, e, s, w, locationx, locationy, location)
 print("Victory!")
-#Setja inn færsluaðgerð, þe. setja inn skipanir fyrir færslu og láta kall færast
-#Setja inn hvað gerjst gerist í hverjum af 9 tælum
-#Setja inn rettar prent skipanir og biðji um input á réttum stöðum
 
 #prenta út victory ef þetta lendir á réttum stað.
