@@ -1,6 +1,7 @@
-#Velja upphafsstaðsetningu x og y
-locationx, locationy = 1, 1
-location = [locationx, locationy]
+#1. það var auðveldara að búa til þessa gerð forrits því það var minna af endurtekningum. Þessi var flóknari en samt auðveldara að búa þetta til
+#2. Ég held þessi sé læsilegri. 
+#3. Helsti kostur seinni gerðar forritsins er að ef það þarf að stækka svæðið sem ferðast má um eða breyta því þá er það mjög einfalt
+#í þessari seinni gerð. Í fyrri gerðinni var það mjög mikil handavinna.
 
 #Setja inn prentaðgerð
 def youcantravel(n, e, s, w):
@@ -57,6 +58,11 @@ def heildarfærsla(no, ea, so, we, x, y, xy):
         xy, x, y = faersla(attin, xy, x, y)      
     return xy, x, y 
 
+
+#Velja upphafsstaðsetningu x og y
+locationx, locationy = 1, 1
+location = [locationx, locationy]
+
 #Setja inn hvað gerjst gerist í hverjum af 9 tælum
 victory = [3,1]
 while location != victory:
@@ -78,6 +84,5 @@ while location != victory:
     if location == [3,2]:
         n, e, s, w= 1, 0, 1 ,0
         location, locationx, locationy = heildarfærsla(n, e, s, w, locationx, locationy, location)
-print("Victory!")
-
 #prenta út victory ef þetta lendir á réttum stað.
+print("Victory!")
